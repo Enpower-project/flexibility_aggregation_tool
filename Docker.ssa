@@ -1,0 +1,25 @@
+FROM python:3.11-slim
+
+# Scripts will run only once, no need to make bytecode
+ENV PYTHONDONTWRITEBYTECODE=1
+
+# Unbuffered IO
+ENV PYTHONUNBUFFERED=1
+
+# set the working directory in the container
+WORKDIR /app
+
+# copy the dependencies file to the working directory
+COPY requirements.txt .
+
+# install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# copy the content of the local src directory to the working directory
+COPY . .
+
+ENV PYTHONPATH="${PYTHONPATH}:/app"
+
+# command to run on container start
+CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000"]
+

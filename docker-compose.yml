@@ -1,0 +1,20 @@
+services:
+
+  community_api:
+    container_name: community_api
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Docker.ssa
+    networks:
+      - community-nwk
+    ports:
+      - "8000:8000"
+
+networks:
+
+  community-nwk:
+    driver: bridge
+    
+    
+

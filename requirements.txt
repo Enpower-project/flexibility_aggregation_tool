@@ -1,0 +1,7 @@
+requests~=2.31.0
+schedule~=1.2.1
+pandas
+psycopg2-binary
+pyarrow
+uvicorn
+fastapi
